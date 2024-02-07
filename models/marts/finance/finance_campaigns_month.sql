@@ -1,13 +1,15 @@
-SELECT
+select
 
-CONCAT(EXTRACT(MONTH FROM date_date), ' - ', EXTRACT(YEAR FROM date_date)) AS monthdate,
-ROUND(SUM(ads_margin),2) AS ads_margin, 
-ROUND(SUM(average_basket),2) AS average_basket, 
-ROUND(SUM(operational_margin),2) AS operational_margin, 
-ROUND(SUM(average_basket_bis),2) AS average_basket_bis, 
-ROUND(SUM(quantity),2) AS quantity, 
-ROUND(SUM(nb_transactions),2) AS nb_transactions
+    concat(
+        extract(month from date_date), ' - ', extract(year from date_date)
+    ) as monthdate,
+    round(sum(ads_margin), 2) as ads_margin,
+    round(sum(average_basket), 2) as average_basket,
+    round(sum(operational_margin), 2) as operational_margin,
+    round(sum(average_basket_bis), 2) as average_basket_bis,
+    round(sum(quantity), 2) as quantity,
+    round(sum(nb_transactions), 2) as nb_transactions
 
-FROM {{ref('finance_campaigns_day')}}
+from {{ ref("finance_campaigns_day") }}
 
-GROUP BY CONCAT(EXTRACT(MONTH FROM date_date), ' - ', EXTRACT(YEAR FROM date_date))
+group by concat(extract(month from date_date), ' - ', extract(year from date_date))
