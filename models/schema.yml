@@ -35,3 +35,25 @@ sources:
         identifier: raw_gz_facebook
       - name: bing
         identifier: raw_gz_bing
+      - name: int_campaigns
+        tests:            
+          - unique:
+              column_name: "(date_date || '_' || paid_source || '_' || campaign_key)"
+        identifier: int_campaigns
+        description:  all ads sources in a single table
+      - name: int_campaigns_days
+        columns: 
+            - name: date_date
+              tests: 
+                - unique 
+                - not_null 
+        identifier: int_campaigns_days
+        description: aggergation of all ads sources in a single table, aggregated by day
+      - name: finance_campaigns_day
+        columns: 
+            - name: date_date
+              tests: 
+                - unique 
+                - not_null 
+        identifier: finance_campaigns_day
+        description: finance day table with ads margin included, aggregated by day
